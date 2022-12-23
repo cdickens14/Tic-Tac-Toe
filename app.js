@@ -1,12 +1,12 @@
 //State
 const state = {
-    players: [],
+    players: ['x', 'o'],
     board: [
             null, null, null,
             null, null, null,
             null, null, null
            ],
-    score: 0,
+    moves: 0,
 }
 
 //DOM Selectors
@@ -15,6 +15,7 @@ const playerTwo = document.getElementById('player-two');
 const playerOneDisplay = document.getElementById('player-one-display');
 const playerTwoDisplay = document.getElementById('player-two-display');
 const enterButton = document.getElementsByClassName('enter');
+const boxDiv = document.getElementsByClassName('box');
 
 
 //Helper functions
@@ -25,6 +26,13 @@ const enterButton = document.getElementsByClassName('enter');
     //boxDiv.style.height = 100px;
     //body.document.appendChild('boxDiv');
 //}
+const turns = (playerOne, playerTwo) => {
+    if (playerOne === state.players[0]){
+        return moves++;
+    } else if (playerTwo === state.players[1]){
+        return moves++;
+    }
+}; 
 
 
 //Event Listeners
@@ -32,9 +40,17 @@ enterButton[0].addEventListener('click', () => {
     const message = "Player One Name: ";
     playerOneDisplay.innerText = `${message} ${playerOne.value}`;
     playerOne.value = '';
-})
+});
 enterButton[1].addEventListener('click', () => {
     const message = "Player Two Name: ";
     playerTwoDisplay.innerText = `${message} ${playerTwo.value}`;
     playerTwo.value = '';
-})
+});
+boxDiv[i].addEventListener('click', () => {
+    for (let i = 0; i <boxDiv.length; i++){
+    boxDiv.innerText = 'X'
+    boxDiv.innerText = 'O'
+    }
+
+});
+

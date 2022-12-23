@@ -1,6 +1,8 @@
 body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     background-color:hotpink;
-    display: grid;
 }
 header {
     font-size: 50px;
@@ -9,12 +11,15 @@ header {
     font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
-div {
-    display: flex;
-    flex-wrap: wrap;
-    background-color:blueviolet;
-    width: 200px;
-    height: 200px;
+#grid {
+    display: grid;
+    grid-template-columns: 200px 200px 200px;
+    grid-template-rows: 200px 200px 200px;
     margin: 10px;
     padding: 10px;
+}
+
+.box {
+    background-color:blueviolet;
+    margin: 15px;
 }
