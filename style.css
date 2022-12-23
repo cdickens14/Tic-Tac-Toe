@@ -1,0 +1,20 @@
+body {
+    background-color:hotpink;
+    display: grid;
+}
+header {
+    font-size: 50px;
+    color: white;
+    text-align: center;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+div {
+    display: flex;
+    flex-wrap: wrap;
+    background-color:blueviolet;
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+    padding: 10px;
+}
