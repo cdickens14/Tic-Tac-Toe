@@ -11,7 +11,6 @@ const enterButton = document.getElementsByClassName('enter');
 const grid = document.getElementById('grid');
 const boxDiv = document.getElementsByClassName('box');
 const restartGame =document.getElementById('restart-game');
-restartGame.style.visibility = 'hidden';
 
 //Helper functions
 const switchTurns = () => {
@@ -45,10 +44,14 @@ const isWinner = () => {
     }
     }
 }
-const resetGame = () => {
-    
-    currentPlayer = players[0];
+
+const isDraw = () => {
+    const draw = board.includes('');
+    if (board === draw){
+        alert("It's a draw!");
+    }
 }
+
 //Event Listeners
 enterButton[0].addEventListener('click', () => {
     const message = "Player One Name: ";
@@ -73,6 +76,14 @@ boxDiv[i].addEventListener('click', (event) => {
 
 )};
 
+restartGame.addEventListener('click', () => {
+    for (let i = 0; i<boxDiv.length; i++){
+        boxDiv[i].innerText = '';
+        playerOneDisplay.innerText = "Player One Name: ";
+        playerTwoDisplay.innerText = "Player Two Name: ";
+        currentPlayer = players[0];
+    }
+});
 
     
 
