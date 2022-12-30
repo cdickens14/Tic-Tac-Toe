@@ -1,6 +1,8 @@
-const players = ['X', 'O'];
-let currentPlayer = '';
-const board = ['', '', '', '', '', '','', '', ''];
+const state ={
+    players: ['X', 'O'],
+    currentPlayer: '',
+    board: ['', '', '', '', '', '','', '', ''],
+}
 
 //DOM Selectors
 const playerOne = document.getElementById('player-one');
@@ -14,10 +16,10 @@ const restartGame =document.getElementById('restart-game');
 
 //Helper functions
 const switchTurns = () => {
-    if (currentPlayer === players[0]){
-        currentPlayer = players[1];
+    if (state.currentPlayer === state.players[0]){
+        state.currentPlayer = state.players[1];
     } else {
-        currentPlayer = players[0];
+        state.currentPlayer = state.players[0];
     }
 }
 
@@ -36,9 +38,9 @@ const isWinner = () => {
     for (let winner of winningCombos){
          [box1, box2, box3] = winner;
 
-    if (board[box1] !== '' &&
-    (board[box1] === board[box2]) &&
-    (board[box2] === board[box3]))
+    if (state.board[box1] !== '' &&
+    (state.board[box1] === state.board[box2]) &&
+    (state.board[box2] === state.board[box3]))
     {
         alert("You Win!");
     }
@@ -46,8 +48,8 @@ const isWinner = () => {
 }
 
 const isDraw = () => {
-    const draw = board.includes('');
-    if (board === draw){
+    const draw = state.board.includes('');
+    if (state.board === draw){
         alert("It's a draw!");
     }
 }
@@ -67,8 +69,8 @@ enterButton[1].addEventListener('click', () => {
 for (let i = 0; i < boxDiv.length; i++){
 boxDiv[i].addEventListener('click', (event) => {
     const {target} = event;
-    target.textContent = currentPlayer;
-    board[i] = currentPlayer;
+    target.textContent = state.currentPlayer;
+    state.board[i] = state.currentPlayer;
     isWinner();
     switchTurns();
 },
@@ -81,7 +83,7 @@ restartGame.addEventListener('click', () => {
         boxDiv[i].innerText = '';
         playerOneDisplay.innerText = "Player One Name: ";
         playerTwoDisplay.innerText = "Player Two Name: ";
-        currentPlayer = players[0];
+        state.currentPlayer = state.players[0];
     }
 });
 
