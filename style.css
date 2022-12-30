@@ -2,7 +2,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color:hotpink;
+    background-image: url(background-nature.jpeg);
 }
 header {
     font-size: 50px;
@@ -18,6 +18,9 @@ header {
     margin: 10px;
     padding: 10px;
     cursor: pointer;
+    font-size: 100px;
+    color: greenyellow;
+    text-align: center;
 }
 
 .box {
@@ -25,11 +28,20 @@ header {
     margin: 15px;
 }
 
-.x-hover:hover::after {
-    content: "X";
+label {
+    font-size: 25px;
+    color: white;;
 }
 
-.o-hover:hover::after {
-    content: "O";
+h3 {
+    font-size: 25px;
+    color:white;
+}
 
+x-hover:hover::after {
+    content: 'X';
+}
+
+o-hover:hover::after {
+    content: 'O';
 }
