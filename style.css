@@ -17,9 +17,19 @@ header {
     grid-template-rows: 200px 200px 200px;
     margin: 10px;
     padding: 10px;
+    cursor: pointer;
 }
 
 .box {
     background-color:blueviolet;
     margin: 15px;
+}
+
+.x-hover:hover::after {
+    content: "X";
+}
+
+.o-hover:hover::after {
+    content: "O";
+
 }
