@@ -27,14 +27,6 @@ const switchTurns = () => {
     
 }
 }
-const computerChoice = () => {
-    state.isComputerPlaying === true;
-    state.currentPlayer = state.players[1];
-    const computerTurn = Math.floor(Math.random() * boxDiv.length);
-    boxDiv[computerTurn].textContent = 'O';
-    switchTurns();
-}
-
 
 const isWinner = () => {
     const winningCombos = [
@@ -70,6 +62,15 @@ const isDraw = () => {
     }
 }
 
+const computerChoice = () => {
+    state.isComputerPlaying === true;
+    state.currentPlayer = state.players[1];
+    const computerTurn = Math.floor(Math.random() * boxDiv.length);
+    boxDiv[computerTurn].textContent = 'O';
+    isWinner();
+    isDraw();
+    switchTurns();
+}
 
 //Event Listeners
 enterButton[0].addEventListener('click', () => {
@@ -107,13 +108,12 @@ restartGame.addEventListener('click', () => {
         playerOneDisplay.innerText = 'Player One: ';
         playerTwoDisplay.innerText = 'Player Two: ';
         state.currentPlayer = state.players[0];
-        computerPlayer.style.display = 'block';
-        playerOne.style.display = 'block';
-        playerTwo.style.display = 'block';
-        label[1].style.display = 'block';
-        enterButton[1].style.display = 'block';
-
-        
+        computerPlayer.style.display = 'initial';
+        playerOne.style.display = 'initial';
+        playerTwo.style.display = 'initial';
+        label[1].style.display = 'initial';
+        enterButton[1].style.display = 'initial';
+        state.isComputerPlaying = false;
     }
 });
 
