@@ -1,7 +1,8 @@
-const state ={
+const state = {
     players: ['X', 'O'],
     currentPlayer: '',
     board: ['', '', '', '', '', '','', '', ''],
+    isComputerPlaying: false,
 }
 
 //DOM Selectors
@@ -10,6 +11,9 @@ const playerTwo = document.getElementById('player-two');
 const playerOneDisplay = document.getElementById('player-one-display');
 const playerTwoDisplay = document.getElementById('player-two-display');
 const enterButton = document.getElementsByClassName('enter');
+const label = document.getElementsByClassName('label');
+const multiplayer = document.getElementById('multiplayer');
+const computerPlayer = document.getElementById('computer');
 const grid = document.getElementById('grid');
 const boxDiv = document.getElementsByClassName('box');
 const restartGame =document.getElementById('restart-game');
@@ -20,8 +24,17 @@ const switchTurns = () => {
         state.currentPlayer = state.players[1];
     } else {
         state.currentPlayer = state.players[0];
-    }
+    
 }
+}
+const computerChoice = () => {
+    state.isComputerPlaying === true;
+    state.currentPlayer = state.players[1];
+    const computerTurn = Math.floor(Math.random() * boxDiv.length);
+    boxDiv[computerTurn].textContent = 'O';
+    switchTurns();
+}
+
 
 const isWinner = () => {
     const winningCombos = [
@@ -43,37 +56,47 @@ const isWinner = () => {
     (state.board[box2] === state.board[box3]))
     {
         alert("You Win!");
+        
     }
+
     }
+    
 }
 
 const isDraw = () => {
-    const draw = state.board.includes('');
-    if (state.board === draw){
+    const allSpacesUsed = state.board.every(boxDiv => boxDiv !== '');
+    if (allSpacesUsed){
         alert("It's a draw!");
     }
 }
 
+
 //Event Listeners
 enterButton[0].addEventListener('click', () => {
-    const message = "Player One Name: ";
+    const message = "Player One: ";
     playerOneDisplay.innerText = `${message} ${playerOne.value}`;
     playerOne.value = '';
 });
 enterButton[1].addEventListener('click', () => {
-    const message = "Player Two Name: ";
+    computerPlayer.style.display = 'none';
+    const message = "Player Two: ";
     playerTwoDisplay.innerText = `${message} ${playerTwo.value}`;
     playerTwo.value = '';
 });
 
 for (let i = 0; i < boxDiv.length; i++){
 boxDiv[i].addEventListener('click', (event) => {
+    if (state.isComputerPlaying === true){
+        computerChoice();
+    }
     const {target} = event;
     target.textContent = state.currentPlayer;
     state.board[i] = state.currentPlayer;
     isWinner();
+    isDraw();
     switchTurns();
 },
+
 {once: true}
 
 )};
@@ -81,10 +104,27 @@ boxDiv[i].addEventListener('click', (event) => {
 restartGame.addEventListener('click', () => {
     for (let i = 0; i<boxDiv.length; i++){
         boxDiv[i].innerText = '';
-        playerOneDisplay.innerText = "Player One Name: ";
-        playerTwoDisplay.innerText = "Player Two Name: ";
+        playerOneDisplay.innerText = 'Player One: ';
+        playerTwoDisplay.innerText = 'Player Two: ';
         state.currentPlayer = state.players[0];
+        computerPlayer.style.display = 'block';
+        playerOne.style.display = 'block';
+        playerTwo.style.display = 'block';
+        label[1].style.display = 'block';
+        enterButton[1].style.display = 'block';
+
+        
     }
+});
+
+computerPlayer.addEventListener('click', (event) => {
+    computerPlayer.style.display = 'none';
+    playerOne.style.display = 'block';
+    label[1].style.display = 'none';
+    playerTwoDisplay.innerText = 'Player Two: Computer';
+    playerTwo.style.display = 'none';
+    enterButton[1].style.display = 'none';
+    state.isComputerPlaying = true;
 });
 
     
